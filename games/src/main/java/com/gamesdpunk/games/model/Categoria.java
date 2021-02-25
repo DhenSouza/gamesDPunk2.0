@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "categoria")
 public class Categoria {
@@ -29,6 +31,7 @@ public class Categoria {
 	private String plataforma;
 
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("categoria")
 	private List<Produto> produtos;
 
 	public Long getId() {
@@ -54,5 +57,7 @@ public class Categoria {
 	public void setPlataforma(String plataforma) {
 		this.plataforma = plataforma;
 	}
+
+	
 
 }
